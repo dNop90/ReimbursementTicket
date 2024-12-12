@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 @Table(name="users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer userID;
 
     @Column(unique = true, nullable = false)
@@ -17,19 +17,16 @@ public class User {
 
     private Integer role;
 
+    public User()
+    {
+        
+    }
 
     public User(String username, String password)
     {
         this.username = username;
         this.password = password;
         this.role = 0;
-    }
-
-    public User(String username, String password, Integer role)
-    {
-        this.username = username;
-        this.password = password;
-        this.role = role;
     }
 
     public Integer getUserID()

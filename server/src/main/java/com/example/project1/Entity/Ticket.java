@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 @Table(name="ticket")
 public class Ticket {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer ticketID;
 
     private String description;
@@ -16,6 +16,11 @@ public class Ticket {
     private Integer typeID;
     private Integer submitterID;
     private Integer assigneeID;
+
+    public Ticket()
+    {
+        
+    }
 
     public Ticket(String description, Double amount, Integer status, Integer typeID, Integer submitterID, Integer assigneeID)
     {

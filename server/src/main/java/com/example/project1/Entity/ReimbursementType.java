@@ -7,11 +7,16 @@ import jakarta.persistence.*;
 @Table(name = "ticket_type")
 public class ReimbursementType {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer typeID;
 
     @Column(unique = true, nullable = false)
     private String typename;
+
+    public ReimbursementType()
+    {
+        
+    }
 
     public ReimbursementType(String typename)
     {

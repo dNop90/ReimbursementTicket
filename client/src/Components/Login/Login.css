@@ -9,12 +9,14 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.login-form h3{
+.login-form-error{
     display: block;
     margin: 0;
     margin-bottom: 20px;
-    text-transform: uppercase;
     text-align: center;
+    color: red;
+    width: 300px;
+    font-size: 15px;
 } 
 
 .login-form label{
@@ -63,6 +65,7 @@
     background: black;
     color: white;
     border-radius: 5px;
+    font-size: 14px;
 }
 
 .login-form button[type="submit"]:hover{
