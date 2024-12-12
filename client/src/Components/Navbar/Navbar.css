@@ -1,0 +1,32 @@
+nav{
+    height: 50px;
+    background-color: #000000;
+    width: calc(100% - 4px);
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    border: 2px solid #000000;
+}
+
+nav a{
+    display: inline-block;
+    color: white;
+    line-height: 50px;
+    padding: 0px 20px;
+}
+
+nav a:hover{
+    color: black;
+    background-color: white;
+}
+
+nav .left{
+    float: left;
+    padding-left: 10px;
+}
+
+nav .right{
+    float: right;
+    padding-right: 10px;
+}

@@ -1,0 +1,70 @@
+.login-form{
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.login-form h3{
+    display: block;
+    margin: 0;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    text-align: center;
+} 
+
+.login-form label{
+    display: block;
+    text-align: left;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+.login-form input{
+    display: block;
+    width: 300px;
+    margin-bottom: 12px;
+    padding: 7px;
+}
+
+.login-form input[type="text"], .login-form input[type="password"]{
+    border: 1px solid #767676;
+    border-radius: 5px;
+}
+
+.login-form-info{
+    display: block;
+    margin-top: 20px;
+    font-size: 12px;
+}
+
+.login-form-info a{
+    color: black;
+    font-weight: bold;
+}
+
+.login-form-info a:hover{
+    color: var(--app-blue);
+}
+
+.login-form button[type="submit"]{
+    display: block;
+    margin: auto;
+    margin-top: 30px;
+    text-align: center;
+    padding: 10px 0px;
+    width: 100%;
+    text-transform: uppercase;
+    border: 0;
+    background: black;
+    color: white;
+    border-radius: 5px;
+}
+
+.login-form button[type="submit"]:hover{
+    background: var(--app-blue);
+}
