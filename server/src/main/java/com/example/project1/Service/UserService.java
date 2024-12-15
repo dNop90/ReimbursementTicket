@@ -52,4 +52,9 @@ public class UserService
         User user = new User(username, password);
         return userRepository.save(user);
     }
+
+    public int deleteUser(String username)
+    {
+        return userRepository.deleteByUsername(username);
+    }
 }
