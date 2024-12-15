@@ -1,11 +1,28 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Login.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { UserContext } from '../Context/UserContext';
 
-const API_DOMAIN = process.env.REACT_APP_API_DOMAIN;
+const API_DOMAIN = process.env.REACT_APP_API_USER;
 
 function Login(props: {bLogin: boolean})
 {
+  const userContext = useContext(UserContext);
+  const navigate = useNavigate();
+
+  /**
+   * We will check if the user has login or not in useEffect
+   */
+  useEffect(function()
+  {
+    if(userContext?.user)
+    {
+      //If login then we will go to homepage
+      navigate("/");
+    }
+  });
+
+
   const [state, setState] = useState(
     {
       error: false,
@@ -39,7 +56,70 @@ function Login(props: {bLogin: boolean})
    */
   async function userLogin(formData: FormData)
   {
-    let reponse = await fetch("")
+    {
+      //Check username and password
+      let username = formData.get("username");
+      let password = formData.get("password");
+      if(!username && !password)
+      {
+        setState({
+          ...state,
+          error: true,
+          error_messsage: "Missing username or password."
+        });
+  
+        return;
+      }
+  
+      //Send to API to register the user
+      try
+      {
+        let response = await fetch(`${API_DOMAIN}/login`,{
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json; charset=UTF-8"
+          },
+          body: JSON.stringify({
+            username,
+            password
+          })
+        });
+    
+        //Check status
+        let status = response.status;
+        if(status != 200)
+        {
+          throw status;
+        }
+  
+        //Get data as json and check if there's error
+        let data = await response.json();
+        if(data.hasOwnProperty("error"))
+        {
+          setState({
+            ...state,
+            error: true,
+            error_messsage: data["error"]
+          });
+  
+          return;
+        }
+
+        //Set user login
+        userContext?.login(data.id, data.username, data.role);
+        
+        //Back to home page if successfully login
+        navigate("/");
+      }
+      catch(e)
+      {
+        setState({
+          ...state,
+          error: true,
+          error_messsage: "Unknown error. Failed to login."
+        });
+      }
+    }
   }
 
   /**
@@ -48,8 +128,21 @@ function Login(props: {bLogin: boolean})
    */
   async function userRegister(formData: FormData)
   {
+    //Check username and password
+    let username = formData.get("username");
+    let password = formData.get("password");
+    if(!username && !password)
+    {
+      setState({
+        ...state,
+        error: true,
+        error_messsage: "Missing username or password."
+      });
+
+      return;
+    }
     //If password didn't match
-    if(formData.get("password") !== formData.get("password2"))
+    else if(password !== formData.get("password2"))
     {
       setState({
         ...state,
@@ -69,8 +162,8 @@ function Login(props: {bLogin: boolean})
           "Content-Type": "application/json; charset=UTF-8"
         },
         body: JSON.stringify({
-          username: formData.get("username"),
-          password: formData.get("password")
+          username,
+          password
         })
       });
   
@@ -94,6 +187,11 @@ function Login(props: {bLogin: boolean})
         return;
       }
       
+      //Login after register
+      userContext?.login(data.id, data.username, data.role);
+
+      //Back to home page if successfully register
+      navigate("/");
     }
     catch(e)
     {

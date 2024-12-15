@@ -18,11 +18,22 @@ public class UserService
     /**
      * Find user by their username
      * @param username The username to search for
-     * @return The user that found
+     * @return The user that found or null
      */
-    public User getUserByUsername(String username)
+    public User getUser(String username)
     {
         return userRepository.findFirstByUsername(username);
+    }
+
+    /**
+     * Find user by their username and password
+     * @param username The username to search for
+     * @param password The password to search for
+     * @return The user that found or null
+     */
+    public User getUser(String username, String password)
+    {
+        return userRepository.findFirstByUsernameAndPassword(username, password);
     }
 
     /**
@@ -33,7 +44,7 @@ public class UserService
      */
     public User registerUser(String username, String password)
     {
-        if(getUserByUsername(username) != null)
+        if(getUser(username) != null)
         {
             return null;
         }

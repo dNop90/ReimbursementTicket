@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/user")
 public class UserController
 {
     private final UserService userService;
@@ -26,6 +26,55 @@ public class UserController
     {
         this.userService = userService;
     }
+
+    /**
+     * On user login
+     * Check if username and password match
+     * @param payload The payload that the user send to us for login
+     * @return The user information if successful, otherwise error message
+     */
+    @PostMapping("/login")
+    public ResponseEntity<Object> postMethodName(@RequestBody Map<String, Object> payload) {
+        if(payload == null)
+        {
+            Map<String, Object> data = new LinkedHashMap<>();
+            data.put("error", "Invalid data.");
+            return ResponseEntity.ok(data);
+        }
+
+        if(payload.get("username") == null || payload.get("password") == null)
+        {
+            Map<String, Object> data = new LinkedHashMap<>();
+            data.put("error", "Missing username or password.");
+            return ResponseEntity.ok(data);
+        }
+
+        String username = payload.get("username").toString();
+        String password = payload.get("password").toString();
+
+        if(username.isEmpty() || password.isEmpty())
+        {
+            Map<String, Object> data = new LinkedHashMap<>();
+            data.put("error", "Empty username or password.");
+            return ResponseEntity.ok(data);
+        }
+        
+        User user = userService.getUser(username, password);
+        if(user == null)
+        {
+            Map<String, Object> data = new LinkedHashMap<>();
+            data.put("error", "Invalid username or password.");
+            return ResponseEntity.ok(data);
+        }
+
+        Map<String, Object> data = new LinkedHashMap<>();
+        data.put("userID", user.getUserID());
+        data.put("username", user.getUsername());
+        data.put("role", user.getRole());
+
+        return ResponseEntity.ok(data);
+    }
+    
 
     /**
      * On user register
@@ -57,7 +106,7 @@ public class UserController
         if(username.isEmpty() || password.isEmpty())
         {
             Map<String, Object> data = new LinkedHashMap<>();
-            data.put("error", "Invalid username or password.");
+            data.put("error", "Empty username or password.");
             return ResponseEntity.ok(data);
         }
 

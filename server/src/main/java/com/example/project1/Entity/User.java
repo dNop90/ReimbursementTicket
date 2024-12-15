@@ -1,12 +1,14 @@
 package com.example.project1.Entity;
 
+import org.hibernate.annotations.ColumnDefault;
+
 import jakarta.persistence.*;
 
 @Entity
 @Table(name="users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userID;
 
     @Column(unique = true, nullable = false)
@@ -15,6 +17,7 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+    @ColumnDefault("0")
     private Integer role;
 
     public User()
