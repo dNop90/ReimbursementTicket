@@ -17,7 +17,7 @@ function Navbar() {
             <ul>
               <span>{(user as User).username}</span>
               <li><Link to="/account">Account Information</Link></li>
-              <li><Link to="/set-password">Change Password</Link></li>
+              <li><Link to="/account/password">Change Password</Link></li>
               <li><Link to="/logout">Logout</Link></li>
             </ul>
             

@@ -31,49 +31,60 @@ public class Ticket {
         this.submitterID = submitterID;
         this.assigneeID = assigneeID;
     }
-    
-    public Integer getTicketID()
-    {
+
+    public Integer getTicketID() {
         return ticketID;
     }
 
-    public String getDescription()
-    {
+    public void setTicketID(Integer ticketID) {
+        this.ticketID = ticketID;
+    }
+
+    public String getDescription() {
         return description;
     }
 
-    public Double getAmount()
-    {
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Double getAmount() {
         return amount;
     }
 
-    public Integer getStatus()
-    {
+    public void setAmount(Double amount) {
+        this.amount = amount;
+    }
+
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status)
-    {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
-    public Integer getTypeID()
-    {
+    public Integer getTypeID() {
         return typeID;
     }
 
-    public Integer getSubmitterID()
-    {
+    public void setTypeID(Integer typeID) {
+        this.typeID = typeID;
+    }
+
+    public Integer getSubmitterID() {
         return submitterID;
     }
 
-    public Integer getAssigneeID()
-    {
+    public void setSubmitterID(Integer submitterID) {
+        this.submitterID = submitterID;
+    }
+
+    public Integer getAssigneeID() {
         return assigneeID;
     }
 
-    public void setAssigneeID(Integer assigneeID)
-    {
+    public void setAssigneeID(Integer assigneeID) {
         this.assigneeID = assigneeID;
     }
 }

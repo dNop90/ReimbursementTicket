@@ -35,6 +35,18 @@ class UserTests {
 
 	@Test
 	@Order(3)
+	void changePasswordUser()
+	{
+		User user = userService.getUser("test");
+		user.setPassword("1234");
+
+		User updatedUser = userService.updateUser(user);
+		String password = updatedUser.getPassword();
+		Assertions.assertEquals(password, "1234");
+	}
+
+	@Test
+	@Order(4)
 	void deleteUser()
 	{
 		Integer num = userService.deleteUser("test");

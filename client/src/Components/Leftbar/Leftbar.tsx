@@ -22,7 +22,7 @@ function Leftbar() {
                             <li><Link to="/ticket/list">Ticket List</Link></li>
 
                             <span className="leftbar-category">User</span>
-                            <li><Link to="/users">User List</Link></li>
+                            <li><Link to="/user/list">User List</Link></li>
                         </>
                     }
                 </ul>

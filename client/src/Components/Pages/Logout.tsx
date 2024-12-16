@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import { UserContext } from '../Context/UserContext';
-import { useNavigate } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 
 function Logout() {
   const userContext = useContext(UserContext);
@@ -21,7 +21,7 @@ function Logout() {
   });
 
   return (
-    <div></div>
+    <></>
   )
 }
 

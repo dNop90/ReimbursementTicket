@@ -1,0 +1,26 @@
+.page-content-data table{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.page-content-data table thead{
+    background-color: var(--app-grey);
+}
+
+.page-content-data table th, .page-content-data table td{
+    border: 1px solid var(--app-grey-highlight);
+    padding: 8px;
+}
+
+.page-content-data table tr:hover{
+    background-color: var(--app-grey);
+}
+
+.page-content-data table th{
+    background-color: #3d3c47;
+    color: white;
+}
+
+.page-content-data table select{
+    width: 100%;
+}

@@ -6,6 +6,7 @@ import com.example.project1.Entity.User;
 import com.example.project1.Service.UserService;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
+
 
 
 @CrossOrigin
@@ -205,6 +208,119 @@ public class UserController
             data.put("error", "Failed to update account information.");
             return ResponseEntity.ok(data);
         }
+
+        Map<String, Object> data = new LinkedHashMap<>();
+        data.put("success", true);
+        return ResponseEntity.ok(data);
+    }
+
+    /**
+     * Change the user password
+     * @param payload Including username, current password, and new password
+     * @return The reponse success or error message
+     */
+    @PatchMapping("/password")
+    public ResponseEntity<Object> patchPassword(@RequestBody Map<String, Object> payload)
+    {
+        if(payload == null)
+        {
+            Map<String, Object> data = new LinkedHashMap<>();
+            data.put("error", "Invalid data.");
+            return ResponseEntity.ok(data);
+        }
+
+        String username = payload.get("username").toString();
+
+        User user = userService.getUser(username);
+        if(user == null)
+        {
+            Map<String, Object> data = new LinkedHashMap<>();
+            data.put("error", "Invalid user.");
+            return ResponseEntity.ok(data);
+        }
+
+        //New password data
+        String currentpassword = payload.get("current").toString();
+        String newpassword = payload.get("new").toString();
+
+        if(currentpassword.isEmpty() || newpassword.isEmpty())
+        {
+            Map<String, Object> data = new LinkedHashMap<>();
+            data.put("error", "Missing current password or new password.");
+            return ResponseEntity.ok(data);
+        }
+        
+        if(!user.getPassword().equals(currentpassword))
+        {
+            Map<String, Object> data = new LinkedHashMap<>();
+            data.put("error", "Invalid current password.");
+            return ResponseEntity.ok(data);
+        }
+
+        user.setPassword(newpassword);
+
+        //Update
+        User newuserinfo = userService.updateUser(user);
+        if(newuserinfo == null)
+        {
+            Map<String, Object> data = new LinkedHashMap<>();
+            data.put("error", "Failed to update password.");
+            return ResponseEntity.ok(data);
+        }
+
+        Map<String, Object> data = new LinkedHashMap<>();
+        data.put("success", true);
+        return ResponseEntity.ok(data);
+    }
+
+    /**
+     * Get all users information except the password
+     * @return A list of users
+     */
+    @GetMapping("/list")
+    public ResponseEntity<Object> getAllUsers()
+    {
+        List<User> users = userService.getAllUsers();
+
+        //Remove password
+        for(int i = 0; i < users.size(); i++)
+        {
+            users.get(i).setPassword(null);
+        }
+
+        Map<String, Object> data = new LinkedHashMap<>();
+        data.put("users", users);
+        return ResponseEntity.ok(data);
+    }
+    
+    /**
+     * Update the user role
+     * @param payload The payload contains the user ID and the role for update
+     * @return Nothing
+     */
+    @PatchMapping("/role")
+    public ResponseEntity<Object> patchRole(@RequestBody Map<String, Object> payload)
+    {
+        if(payload == null)
+        {
+            Map<String, Object> data = new LinkedHashMap<>();
+            data.put("error", "Invalid data.");
+            return ResponseEntity.ok(data);
+        }
+
+        Integer userid = Integer.valueOf(payload.get("id").toString());
+        Integer role = Integer.valueOf(payload.get("role").toString());
+
+        User user = userService.getUser(userid);
+        if(user == null)
+        {
+            Map<String, Object> data = new LinkedHashMap<>();
+            data.put("error", "Invalid user.");
+            return ResponseEntity.ok(data);
+        }
+
+        user.setRole(role);
+        userService.updateUser(user);
 
         Map<String, Object> data = new LinkedHashMap<>();
         data.put("success", true);

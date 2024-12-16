@@ -1,13 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react'
 import './Account.css'
-import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../Context/UserContext';
 
 const API_DOMAIN = process.env.REACT_APP_API_USER;
 
 function Account() {
   const userContext = useContext(UserContext);
-  const navigate = useNavigate();
 
   const [state, setState] = useState(
     {
@@ -25,12 +23,6 @@ function Account() {
 
   useEffect(function()
   {
-      if(!userContext?.user)
-      {
-        //If not login then we will go to the login page
-        navigate("/login");
-      }
-
       getUserAccountInfo();
   });
 
@@ -81,7 +73,6 @@ function Account() {
     }
     catch(e)
     {
-      console.log(e);
       setState({
         ...state,
         error: true,
@@ -106,7 +97,6 @@ function Account() {
    */
   async function updateUserAccountInfo(formData: FormData)
   {
-    console.log("TEST");
     try
     {
       let email = formData.get("email");

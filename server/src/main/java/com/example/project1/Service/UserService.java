@@ -1,5 +1,7 @@
 package com.example.project1.Service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.example.project1.Entity.User;
@@ -23,6 +25,16 @@ public class UserService
     public User getUser(String username)
     {
         return userRepository.findFirstByUsername(username);
+    }
+
+    /**
+     * Get the user based on their ID
+     * @param id The user ID to find
+     * @return The user or null
+     */
+    public User getUser(Integer id)
+    {
+        return userRepository.findById(id).orElse(null);
     }
 
     /**
@@ -72,5 +84,15 @@ public class UserService
     public User updateUser(User user)
     {
         return userRepository.save(user);
+    }
+
+    /**
+     * Get a list of all users
+     * Contain all the information except the password
+     * @return a list of all users
+     */
+    public List<User> getAllUsers()
+    {
+        return userRepository.findAllByOrderByUserIDAsc();
     }
 }

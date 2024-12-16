@@ -7,31 +7,33 @@ import Navbar from './Components/Navbar/Navbar';
 import { UserProvider } from './Components/Context/UserContext';
 import Ticket from './Components/Pages/Ticket';
 import Logout from './Components/Pages/Logout';
-import Leftbar from './Components/Leftbar/Leftbar';
 import Account from './Components/Pages/Account';
+import UserRoute from './Components/RouteGuard/UserRoute';
+import ManagerRoute from './Components/RouteGuard/ManagerRoute';
+import Password from './Components/Pages/Password';
+import UserList from './Components/Pages/UserList';
 
 function App() {
   return (
     <div className="App">
       <UserProvider>
         <Navbar/>
-        
-        <div className="content">
-          <Leftbar/>
-          <div className="page-content">
-            <div className="page-content-data">
-              <Routes>
-                <Route path="/" element={<Ticket/>} />
-                <Route path="/account" element={<Account/>} />
-              </Routes>
-            </div>
-          </div>
-        </div>
-
         <Routes>
           <Route path="/login" element={<Login bLogin={true} />} />
           <Route path="/register" element={<Login bLogin={false} />} />
           <Route path="/logout" element={<Logout/>} />
+
+          <Route element={<UserRoute/>}>
+            <Route path="/" element={<Ticket/>} />
+            <Route path="/ticket/new" element={<Ticket/>} />
+            <Route path="/account" element={<Account/>} />
+            <Route path="/account/password" element={<Password/>} />
+
+            <Route element={<ManagerRoute/>}>
+              <Route path="/ticket/list" element={<Ticket/>} />
+              <Route path="/user/list" element={<UserList/>} />
+            </Route>
+          </Route>
         </Routes>
 
       </UserProvider>
