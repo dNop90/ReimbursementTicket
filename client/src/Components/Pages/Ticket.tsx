@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../Context/UserContext';
 
-function Home() {
+function Ticket() {
   const userContext = useContext(UserContext);
   const navigate = useNavigate();
 
@@ -19,9 +19,12 @@ function Home() {
   });
 
   return (
-    <div>Home</div>
+    <div>Home
+      <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+      asdf
+    </div>
   )
 
 }
 
-export default Home
+export default Ticket

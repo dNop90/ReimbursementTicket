@@ -10,29 +10,20 @@ function Navbar() {
 
   return (
     <>
-      <nav>
-          <div className="left">
-              <Link to="/">Home</Link>
-
-              {
-                user && user.role >= 0 &&
-                <Link to="/new-ticket">New Ticket</Link>
-              }
-
-              {
-                user && user.role >= 1 &&
-                <Link to="/user-management">User Management</Link>
-              }
-
+      {
+        user &&
+        <nav>
+          <div className="right">
+            <ul>
+              <span>{(user as User).username}</span>
+              <li><Link to="/account">Account Information</Link></li>
+              <li><Link to="/set-password">Change Password</Link></li>
+              <li><Link to="/logout">Logout</Link></li>
+            </ul>
+            
           </div>
-          
-          {
-            user &&
-            <div className="right">
-              <Link to="/logout">{(user as User).username}</Link>
-            </div>
-          }
-      </nav>
+        </nav>
+      }
     </>
   )
 }

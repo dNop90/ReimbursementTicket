@@ -1,0 +1,61 @@
+.account-form{
+    display: block;
+    margin: 50px auto 0px;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: left;
+    width: 400px;
+}
+
+.account-form-error{
+    display: block;
+    margin: 0;
+    margin-bottom: 25px;
+    text-align: center;
+    color: red;
+    width: 400px;
+    font-size: 14px;
+}
+
+.account-form-error.success{
+    color: green;
+}
+
+.account-form label{
+    display: block;
+    text-align: left;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+.account-form input{
+    display: block;
+    width: calc(100% - 16px);
+    margin-bottom: 12px;
+    padding: 7px;
+}
+
+.account-form input[type="text"], .login-form input[type="password"], .account-form input[type="email"]{
+    border: 1px solid #767676;
+    border-radius: 5px;
+}
+
+.account-form button[type="submit"]{
+    display: block;
+    margin: auto;
+    margin-top: 30px;
+    text-align: center;
+    padding: 10px 0px;
+    width: 100%;
+    text-transform: uppercase;
+    border: 0;
+    background: black;
+    color: white;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.account-form button[type="submit"]:hover{
+    background: var(--app-blue);
+}

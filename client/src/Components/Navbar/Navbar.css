@@ -1,32 +1,59 @@
 nav{
     height: 50px;
     background-color: #000000;
-    width: calc(100% - 4px);
+    width: 100%;
     display: block;
     position: fixed;
     top: 0;
     left: 0;
-    border: 2px solid #000000;
-}
-
-nav a{
-    display: inline-block;
-    color: white;
-    line-height: 50px;
-    padding: 0px 20px;
-}
-
-nav a:hover{
-    color: black;
-    background-color: white;
-}
-
-nav .left{
-    float: left;
-    padding-left: 10px;
+    z-index: 100;
 }
 
 nav .right{
     float: right;
-    padding-right: 10px;
+}
+
+nav .right ul{
+    display: inline-block;
+    color: white;
+    margin: 0;
+    padding: 0;
+    line-height: 50px;
+    min-width: 200px;
+    border-bottom-style: none;
+    list-style-type: none;
+}
+
+nav .right ul:hover{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+nav .right ul span{
+    padding: 0px 15px;
+}
+
+nav .right ul li{
+    display: none;
+    background-color: var(--app-grey);
+    width: 100%;
+}
+
+nav .right ul li:last-child
+{
+    border-bottom: 0;
+}
+
+nav .right ul:hover li{
+    display: block;
+}
+
+nav .right ul a{
+    display: block;
+    width: 100%;
+    color: var(--app-grey-text);
+}
+
+nav .right ul a:hover{
+    color: white;
+    background-color: var(--app-blue);
 }

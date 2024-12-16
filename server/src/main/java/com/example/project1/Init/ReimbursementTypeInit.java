@@ -18,6 +18,8 @@ public class ReimbursementTypeInit implements ApplicationRunner{
 
     public void run(final ApplicationArguments args)
     {
+        //Check if theres any reimbursement type
+        //If not not then we will create the first one
         if(reimbursementTypeRepository.count() != 0)
         {
             return;

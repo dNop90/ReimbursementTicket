@@ -53,8 +53,24 @@ public class UserService
         return userRepository.save(user);
     }
 
+    /**
+     * Delete a user from the database
+     * This is only use in testing
+     * @param username The username to find to delete
+     * @return The amount of users that got deleted
+     */
     public int deleteUser(String username)
     {
         return userRepository.deleteByUsername(username);
+    }
+
+    /**
+     * Update a user information
+     * @param user The user object that will use to update in the database
+     * @return The user that got updated
+     */
+    public User updateUser(User user)
+    {
+        return userRepository.save(user);
     }
 }
