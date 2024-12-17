@@ -39,4 +39,34 @@ public class TicketService {
     {
         return ticketRepository.findBySubmitterIDOrderByCreatedAtDesc(submitterID);
     }
+
+    /**
+     * Get all the ticket
+     * The order of the ticket will be based on the created time desc
+     * @return A list of ticket
+     */
+    public List<Ticket> getTickets()
+    {
+        return ticketRepository.findAllByOrderByCreatedAtDesc();
+    }
+
+    /**
+     * Get a ticket based on the ticket ID
+     * @param id The ticket ID to search for
+     * @return The ticket if exist otherwise null
+     */
+    public Ticket getTicketByID(Integer id)
+    {
+        return ticketRepository.findById(id).orElse(null);
+    }
+
+    /**
+     * Update a ticket data
+     * @param ticket The ticket to update
+     * @return The ticket that updated
+     */
+    public Ticket updateTicket(Ticket ticket)
+    {
+        return ticketRepository.save(ticket);
+    }
 }

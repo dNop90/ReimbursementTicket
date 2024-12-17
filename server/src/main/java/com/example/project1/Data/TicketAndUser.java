@@ -1,55 +1,35 @@
-package com.example.project1.Entity;
+package com.example.project1.Data;
 
 import java.time.LocalDateTime;
 
-import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.CreationTimestamp;
-
-import jakarta.persistence.*;
-
-
-@Entity
-@Table(name="ticket")
-public class Ticket {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+/**
+ * This class isn't entity or model
+ * This is only use to combine the ticket and the user data
+ */
+public class TicketAndUser {
     private Integer ticketID;
-
     private String description;
-
-    @Column(nullable = false)
     private Double amount;
-
-    @Column(nullable = false)
-    @ColumnDefault("0")
     private Integer status;
-
-    @Column(nullable = false)
     private Integer typeID;
-
-    @Column(nullable = false)
-    private Integer submitterID;
-    
-    private Integer assigneeID;
-
-    @CreationTimestamp
+    private String submitterName;
+    private String assigneeName;
     private LocalDateTime createdAt;
-
     private LocalDateTime completedAt;
-
-
-    public Ticket()
-    {
+    
+    public TicketAndUser(){
         
     }
 
-    public Ticket(String description, Double amount, Integer status, Integer typeID, Integer submitterID)
-    {
+    public TicketAndUser(Integer ticketID, String description, Double amount, Integer status, Integer typeID,
+            LocalDateTime createdAt, LocalDateTime completedAt) {
+        this.ticketID = ticketID;
         this.description = description;
         this.amount = amount;
         this.status = status;
         this.typeID = typeID;
-        this.submitterID = submitterID;
+        this.createdAt = createdAt;
+        this.completedAt = completedAt;
     }
 
     public Integer getTicketID() {
@@ -92,20 +72,20 @@ public class Ticket {
         this.typeID = typeID;
     }
 
-    public Integer getSubmitterID() {
-        return submitterID;
+    public String getSubmitterName() {
+        return submitterName;
     }
 
-    public void setSubmitterID(Integer submitterID) {
-        this.submitterID = submitterID;
+    public void setSubmitterName(String submitterName) {
+        this.submitterName = submitterName;
     }
 
-    public Integer getAssigneeID() {
-        return assigneeID;
+    public String getAssigneeName() {
+        return assigneeName;
     }
 
-    public void setAssigneeID(Integer assigneeID) {
-        this.assigneeID = assigneeID;
+    public void setAssigneeName(String assigneeName) {
+        this.assigneeName = assigneeName;
     }
 
     public LocalDateTime getCreatedAt() {
@@ -116,7 +96,6 @@ public class Ticket {
         this.createdAt = createdAt;
     }
 
-    
     public LocalDateTime getCompletedAt() {
         return completedAt;
     }

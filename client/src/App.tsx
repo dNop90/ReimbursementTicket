@@ -13,6 +13,7 @@ import ManagerRoute from './Components/RouteGuard/ManagerRoute';
 import Password from './Components/Pages/Password';
 import UserList from './Components/Pages/UserList';
 import NewTicket from './Components/Pages/NewTicket';
+import TicketList from './Components/Pages/TicketList';
 
 function App() {
   return (
@@ -31,7 +32,7 @@ function App() {
             <Route path="/account/password" element={<Password/>} />
 
             <Route element={<ManagerRoute/>}>
-              <Route path="/ticket/list" element={<Ticket/>} />
+              <Route path="/ticket/list" element={<TicketList/>} />
               <Route path="/user/list" element={<UserList/>} />
             </Route>
           </Route>

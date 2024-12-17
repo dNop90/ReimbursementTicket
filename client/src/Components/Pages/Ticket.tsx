@@ -170,7 +170,8 @@ function Ticket() {
                   <th>Description</th>
                   <th>Amount</th>
                   <th>Type</th>
-                  <th data-sort-default>Created At</th>
+                  <th>Created At</th>
+                  <th data-sort-default>Completed At</th>
               </tr>
           </thead>
           
@@ -185,6 +186,7 @@ function Ticket() {
                           <td>{ticket.amount || ""}</td>
                           <td>{ticket.typeID || ""}</td>
                           <td>{ticket.createdAt ? (new Date(ticket.createdAt)).toLocaleString() : ""}</td>
+                          <td>{ticket.completedAt ? (new Date(ticket.completedAt)).toLocaleString() : ""}</td>
                       </tr>
                   ))
               }
