@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import './Account.css'
-import { UserContext } from '../Context/UserContext';
+import { UserContext } from '../../Context/UserContext';
 
 const API_DOMAIN = process.env.REACT_APP_API_USER;
 

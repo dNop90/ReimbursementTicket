@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import './Account.css'
-import { UserContext } from '../Context/UserContext';
+import { UserContext } from '../../Context/UserContext';
 import { useNavigate } from 'react-router-dom';
 
 const API_TICKET = process.env.REACT_APP_API_TICKET;

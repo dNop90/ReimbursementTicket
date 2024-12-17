@@ -4,7 +4,7 @@ import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import Login from './Components/Pages/Login';
 import Navbar from './Components/Navbar/Navbar';
-import { UserProvider } from './Components/Context/UserContext';
+import { UserProvider } from './Context/UserContext';
 import Ticket from './Components/Pages/Ticket';
 import Logout from './Components/Pages/Logout';
 import Account from './Components/Pages/Account';

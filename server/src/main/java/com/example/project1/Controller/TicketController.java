@@ -1,6 +1,7 @@
 package com.example.project1.Controller;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.project1.Entity.ReimbursementType;
+import com.example.project1.Entity.Ticket;
 import com.example.project1.Service.ReimbursementTypeService;
 import com.example.project1.Service.TicketService;
 import com.example.project1.Service.UserService;
@@ -83,4 +85,31 @@ public class TicketController {
         data.put("success", true);
         return ResponseEntity.ok(data);
     }
+
+    @PostMapping("/user")
+    public ResponseEntity<Object> getTickets(@RequestBody Map<String, Object> payload) {
+        if(payload == null)
+        {
+            Map<String, Object> data = new LinkedHashMap<>();
+            data.put("error", "Invalid data.");
+            return ResponseEntity.ok(data);
+        }
+        
+        if(payload.get("userid") == null)
+        {
+            Map<String, Object> data = new LinkedHashMap<>();
+            data.put("error", "Missing data.");
+            return ResponseEntity.ok(data);
+        }
+
+        String strUserID = payload.get("userid").toString();
+        Integer userid = Integer.parseInt(strUserID);
+        
+        List<Ticket> tickets = ticketService.getTickets(userid);
+        
+        Map<String, Object> data = new LinkedHashMap<>();
+        data.put("tickets", tickets);
+        return ResponseEntity.ok(data);
+    }
+    
 }

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import './Leftbar.css'
 import { Link, useNavigate } from 'react-router-dom'
-import { UserContext } from '../Context/UserContext';
+import { UserContext } from '../../Context/UserContext';
 
 function Leftbar() {
   const userContext = useContext(UserContext);

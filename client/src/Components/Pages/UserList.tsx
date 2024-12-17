@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './Table.css'
 
 const API_DOMAIN = process.env.REACT_APP_API_USER;
@@ -9,9 +9,24 @@ function UserList() {
         data: {}
     });
 
+    //Tablesort
+    const usertablelist = useRef(null);
+    let tablesort_usertable : any = null;
+
     useEffect(function()
     {
-        getUserList();
+        if(!state.loaded)
+        {
+            getUserList();
+
+            //Tablesort
+            const TableSort = (window as any).Tablesort;
+
+            if(!tablesort_usertable)
+            {
+                tablesort_usertable = new TableSort(usertablelist.current);
+            }
+        }
     });
 
     /**
@@ -33,6 +48,7 @@ function UserList() {
             let data = await response.json();
             
             setState({loaded: true, data});
+            tablesort_usertable?.refresh();
         }
         catch(e)
         {
@@ -82,9 +98,9 @@ function UserList() {
     }
 
     return (
-        <table>
+        <table ref={usertablelist}>
             <thead>
-                <tr>
+                <tr data-sort-method="none">
                     <th>ID</th>
                     <th>Username</th>
                     <th>Email</th>

@@ -1,5 +1,7 @@
 package com.example.project1.Service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.example.project1.Entity.Ticket;
@@ -26,5 +28,15 @@ public class TicketService {
     {
         Ticket newticket = new Ticket(description, amount, 0, typeID, submitterID);
         return ticketRepository.save(newticket);
+    }
+
+    /**
+     * Get a list of ticket that was submitted by specific user
+     * @param submitterID The userID to look for
+     * @return A list of tickets from the submitter
+     */
+    public List<Ticket> getTickets(Integer submitterID)
+    {
+        return ticketRepository.findBySubmitterIDOrderByCreatedAtDesc(submitterID);
     }
 }
