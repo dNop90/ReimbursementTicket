@@ -36,7 +36,7 @@
     padding: 7px;
 }
 
-.account-form input[type="text"], .account-form input[type="password"], .account-form input[type="email"]{
+.account-form input[type="text"], .account-form input[type="password"], .account-form input[type="email"], .account-form input[type="number"]{
     border: 1px solid #767676;
     border-radius: 5px;
 }
@@ -58,4 +58,12 @@
 
 .account-form button[type="submit"]:hover{
     background: var(--app-blue);
+}
+
+.account-form select{
+    display: block;
+    width: 100%;
+    margin-bottom: 12px;
+    padding: 7px;
+    border-radius: 5px;
 }

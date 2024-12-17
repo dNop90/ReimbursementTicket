@@ -19,12 +19,15 @@ public class ReimbursementTypeInit implements ApplicationRunner{
     public void run(final ApplicationArguments args)
     {
         //Check if theres any reimbursement type
-        //If not not then we will create the first one
+        //If not not then we init the reimbursement type
         if(reimbursementTypeRepository.count() != 0)
         {
             return;
         }
 
+        reimbursementTypeRepository.save(new ReimbursementType("Travel"));
+        reimbursementTypeRepository.save(new ReimbursementType("Lodging"));
+        reimbursementTypeRepository.save(new ReimbursementType("Food"));
         reimbursementTypeRepository.save(new ReimbursementType("Other"));
     }
 }

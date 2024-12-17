@@ -12,6 +12,7 @@ import UserRoute from './Components/RouteGuard/UserRoute';
 import ManagerRoute from './Components/RouteGuard/ManagerRoute';
 import Password from './Components/Pages/Password';
 import UserList from './Components/Pages/UserList';
+import NewTicket from './Components/Pages/NewTicket';
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function App() {
 
           <Route element={<UserRoute/>}>
             <Route path="/" element={<Ticket/>} />
-            <Route path="/ticket/new" element={<Ticket/>} />
+            <Route path="/ticket/new" element={<NewTicket/>} />
             <Route path="/account" element={<Account/>} />
             <Route path="/account/password" element={<Password/>} />
 

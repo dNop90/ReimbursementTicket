@@ -106,7 +106,7 @@ function Login(props: {bLogin: boolean})
         }
 
         //Set user login
-        userContext?.login(data.id, data.username, data.role);
+        userContext?.login(data.userID, data.username, data.role);
         
         //Back to home page if successfully login
         navigate("/");

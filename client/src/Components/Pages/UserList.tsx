@@ -6,7 +6,7 @@ const API_DOMAIN = process.env.REACT_APP_API_USER;
 function UserList() {
     const [state, setState] = useState<any>({
         loaded: false,
-        data: {} as any
+        data: {}
     });
 
     useEffect(function()
