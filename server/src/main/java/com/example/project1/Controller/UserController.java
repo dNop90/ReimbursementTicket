@@ -38,7 +38,7 @@ public class UserController
      * @return The user information if successful, otherwise error message
      */
     @PostMapping("/login")
-    public ResponseEntity<Object> postMethodName(@RequestBody Map<String, Object> payload) {
+    public ResponseEntity<Object> loginUser(@RequestBody Map<String, Object> payload) {
         if(payload == null)
         {
             Map<String, Object> data = new LinkedHashMap<>();
