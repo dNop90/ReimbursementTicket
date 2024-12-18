@@ -40,7 +40,7 @@ function UserList() {
     
             //Check status
             let status = response.status;
-            if(status != 200)
+            if(status !== 200)
             {
                 throw status;
             }
@@ -52,7 +52,7 @@ function UserList() {
         }
         catch(e)
         {
-            setState({loaded: false, data: {}});
+            setState({loaded: true, data: {}});
         }
     }
 
@@ -70,7 +70,7 @@ function UserList() {
 
             //Check status
             let status = response.status;
-            if(status != 200)
+            if(status !== 200)
             {
             throw status;
             }
@@ -128,8 +128,8 @@ function UserList() {
                                     (<>Owner</>)
                                     :
                                     (<select data-user-id={user.userID} onChange={onRoleChange}>
-                                        <option value="0" selected={user.role == 0}>Employee</option>
-                                        <option value="1" selected={user.role == 1}>Manager</option>
+                                        <option value="0" selected={user.role === 0}>Employee</option>
+                                        <option value="1" selected={user.role === 1}>Manager</option>
                                     </select>)
                                 }
                             </td>

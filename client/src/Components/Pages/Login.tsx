@@ -71,7 +71,7 @@ function Login(props: {bLogin: boolean})
         return;
       }
   
-      //Send to API to register the user
+      //Send to API to login the user
       try
       {
         let response = await fetch(`${API_DOMAIN}/login`,{
@@ -188,7 +188,7 @@ function Login(props: {bLogin: boolean})
       }
       
       //Login after register
-      userContext?.login(data.id, data.username, data.role);
+      userContext?.login(data.userID, data.username, data.role);
 
       //Back to home page if successfully register
       navigate("/");

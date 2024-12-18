@@ -9,6 +9,7 @@ function Account() {
 
   const [state, setState] = useState(
     {
+      loaded: false,
       error: false,
       success: false,
       error_message: "",
@@ -23,7 +24,11 @@ function Account() {
 
   useEffect(function()
   {
+    if(!state.loaded)
+    {
       getUserAccountInfo();
+    }
+    
   });
 
   /**
@@ -58,6 +63,7 @@ function Account() {
       {
         setState({
           ...state,
+          loaded: true,
           error: true,
           success: false,
           error_message: data["error"] as string
@@ -68,6 +74,7 @@ function Account() {
       
       setState({
         ...state,
+        loaded: true,
         formData: data
       });
     }
@@ -75,6 +82,7 @@ function Account() {
     {
       setState({
         ...state,
+        loaded: true,
         error: true,
         success: false,
         error_message: "Unknown error. Failed to retrieve your account information."

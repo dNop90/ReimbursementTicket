@@ -54,7 +54,7 @@ function Ticket() {
       let responseType = await fetch(`${API_REIMBURSEMENT}/types`);
             
       let statusType = responseType.status;
-      if(statusType != 200)
+      if(statusType !== 200)
       {
           throw statusType;
       }
@@ -80,7 +80,7 @@ function Ticket() {
 
       //Check status
       let status = response.status;
-      if(status != 200)
+      if(status !== 200)
       {
           throw status;
       }
@@ -91,11 +91,13 @@ function Ticket() {
       let active_tickets = [];
       let archived_tickets = [];
 
+      console.log(data);
+
       for(const ticket of data.tickets)
       {
         ticket.typeID = reimbursementType[ticket.typeID];
 
-        if(ticket.status == 0)
+        if(ticket.status === 0)
         {
           ticket.status = 'In Progress';
           active_tickets.push(ticket);
@@ -124,7 +126,7 @@ function Ticket() {
     }
     catch(e)
     {
-      setState({loaded: false, data: {}, active: [], archived: []});
+      setState({loaded: true, data: {}, active: [], archived: []});
     }
   }
 
@@ -146,7 +148,7 @@ function Ticket() {
           {state.loaded &&
           <tbody>
               {
-                  state.active.map((ticket: any, index: number) => (
+                  state.active?.map((ticket: any, index: number) => (
                       <tr>
                           <td>{ticket.ticketID}</td>
                           <td>{ticket.status}</td>
@@ -178,7 +180,7 @@ function Ticket() {
           {state.loaded &&
           <tbody>
               {
-                  state.archived.map((ticket: any, index: number) => (
+                  state.archived?.map((ticket: any, index: number) => (
                       <tr>
                           <td>{ticket.ticketID}</td>
                           <td>{ticket.status}</td>
