@@ -25,9 +25,9 @@ public class ReimbursementTypeInit implements ApplicationRunner{
             return;
         }
 
+        reimbursementTypeRepository.save(new ReimbursementType("Other"));
         reimbursementTypeRepository.save(new ReimbursementType("Travel"));
         reimbursementTypeRepository.save(new ReimbursementType("Lodging"));
         reimbursementTypeRepository.save(new ReimbursementType("Food"));
-        reimbursementTypeRepository.save(new ReimbursementType("Other"));
     }
 }

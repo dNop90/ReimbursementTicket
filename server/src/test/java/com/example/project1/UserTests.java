@@ -15,14 +15,22 @@ import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 
+import com.example.project1.Entity.User;
+import com.example.project1.Service.UserService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+@SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class UserTests {
+	@Autowired
+	private UserService userService;
+
 	ApplicationContext app;
     HttpClient webClient;
     ObjectMapper objectMapper;
@@ -238,5 +246,20 @@ class UserTests {
 		actualResult.put("success", Boolean.parseBoolean(actualResult.get("success").toString()));
        
 		Assertions.assertEquals(expectedResult, actualResult, "Expected="+expectedResult + ", Actual="+actualResult);
+	}
+
+	/**
+	 * For cleaning the test user
+	 */
+	@Order(12)
+	@Test
+	public void removeUser()
+	{
+		User user = userService.getUser("test");
+		if(user != null)
+		{
+			//Remove the testing user if exist
+			userService.deleteUser("test");
+		}
 	}
 }
