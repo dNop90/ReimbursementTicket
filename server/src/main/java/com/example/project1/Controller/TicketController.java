@@ -138,6 +138,10 @@ public class TicketController {
             
             //Search for the submitter user and the assignee user
             User submitterUser = userService.getUser(ticket.getSubmitterID());
+            if(submitterUser == null)
+            {
+                continue;
+            }
             tempdata.setSubmitterName(submitterUser.getUsername());
 
             if(ticket.getAssigneeID() != null)
