@@ -46,7 +46,7 @@ public class TicketController {
      * @return success or error
      */
     @PostMapping("/new")
-    public ResponseEntity<Object> postMethodName(@RequestBody Map<String, Object> payload) {
+    public ResponseEntity<Object> createNewTicket(@RequestBody Map<String, Object> payload) {
         if(payload == null)
         {
             Map<String, Object> data = new LinkedHashMap<>();
