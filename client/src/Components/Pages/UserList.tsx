@@ -15,19 +15,16 @@ function UserList() {
 
     useEffect(function()
     {
-        if(!state.loaded)
+        getUserList();
+
+        //Tablesort
+        const TableSort = (window as any).Tablesort;
+
+        if(!tablesort_usertable)
         {
-            getUserList();
-
-            //Tablesort
-            const TableSort = (window as any).Tablesort;
-
-            if(!tablesort_usertable)
-            {
-                tablesort_usertable = new TableSort(usertablelist.current);
-            }
+            tablesort_usertable = new TableSort(usertablelist.current);
         }
-    });
+    }, []);
 
     /**
      * Get the user list when the page load

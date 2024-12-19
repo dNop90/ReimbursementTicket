@@ -23,24 +23,21 @@ function TicketList() {
     
     useEffect(function()
     {
-        if(!state.loaded)
-        {
-            getAllTickets();
-  
-            //Tablesort
-            const TableSort = (window as any).Tablesort;
-  
-            if(!tablesort_activetickets)
-            {
-              tablesort_activetickets = new TableSort(currentactivetickets.current);
-            }
-            
-            if(!tablesort_archivedtickets)
-            {
-              tablesort_archivedtickets = new TableSort(archivedtickets.current);
-            }
-        }
-    });
+      getAllTickets();
+
+      //Tablesort
+      const TableSort = (window as any).Tablesort;
+
+      if(!tablesort_activetickets)
+      {
+        tablesort_activetickets = new TableSort(currentactivetickets.current);
+      }
+      
+      if(!tablesort_archivedtickets)
+      {
+        tablesort_archivedtickets = new TableSort(archivedtickets.current);
+      }
+    }, []);
   
     /**
      * Get user tickets
