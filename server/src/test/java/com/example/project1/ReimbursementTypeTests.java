@@ -46,8 +46,8 @@ public class ReimbursementTypeTests {
      * @throws IOException
      * @throws InterruptedException
      */
-    @Order(7)
     @Test
+    @Order(17)
     public void getReimbursementTypes() throws IOException, InterruptedException
 	{
         HttpRequest postMessageRequest = HttpRequest.newBuilder()

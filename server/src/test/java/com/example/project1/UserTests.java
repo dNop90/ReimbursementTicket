@@ -51,12 +51,41 @@ class UserTests {
     }
 
 	/**
-	 * Test user register
+	 * Test missing username or password for register
 	 * @throws IOException
 	 * @throws InterruptedException
 	 */
 	@Test
 	@Order(1)
+	public void failedRegisterUser_param() throws IOException, InterruptedException
+	{
+		String json = "{}";
+        HttpRequest postMessageRequest = HttpRequest.newBuilder()
+                .uri(URI.create("http://localhost:8080/api/user/register"))
+				.header("Content-Type", "application/json; charset=UTF-8")
+                .POST(HttpRequest.BodyPublishers.ofString(json))
+                .build();
+		
+		HttpResponse<String> response = webClient.send(postMessageRequest, HttpResponse.BodyHandlers.ofString());
+        int status = response.statusCode();
+        Assertions.assertEquals(200, status, "Expected Status Code 200 - Actual Code was: " + status);
+
+		String expectedResult = "error";
+
+        ObjectMapper om = new ObjectMapper();
+        Map<String, Object> data = om.readValue(response.body().toString(), new TypeReference<Map<String, Object>>() {});
+		String actualResult = data.keySet().iterator().next();
+
+        Assertions.assertEquals(expectedResult, actualResult, "Expected="+expectedResult + ", Actual="+actualResult);
+	}
+
+	/**
+	 * Test user register
+	 * @throws IOException
+	 * @throws InterruptedException
+	 */
+	@Test
+	@Order(2)
 	public void registerUser() throws IOException, InterruptedException
 	{
 		String json = "{\"username\":\"test\",\"password\": \"test\"}";
@@ -81,12 +110,70 @@ class UserTests {
 	}
 
 	/**
+	 * Test if username is exist for register
+	 * @throws IOException
+	 * @throws InterruptedException
+	 */
+	@Test
+	@Order(3)
+	public void failedRegisterUser_exist() throws IOException, InterruptedException
+	{
+		String json = "{\"username\":\"test\",\"password\": \"test\"}";
+        HttpRequest postMessageRequest = HttpRequest.newBuilder()
+                .uri(URI.create("http://localhost:8080/api/user/register"))
+				.header("Content-Type", "application/json; charset=UTF-8")
+                .POST(HttpRequest.BodyPublishers.ofString(json))
+                .build();
+		
+		HttpResponse<String> response = webClient.send(postMessageRequest, HttpResponse.BodyHandlers.ofString());
+        int status = response.statusCode();
+        Assertions.assertEquals(200, status, "Expected Status Code 200 - Actual Code was: " + status);
+
+		String expectedResult = "error";
+
+        ObjectMapper om = new ObjectMapper();
+        Map<String, Object> data = om.readValue(response.body().toString(), new TypeReference<Map<String, Object>>() {});
+		String actualResult = data.keySet().iterator().next();
+		
+        Assertions.assertEquals(expectedResult, actualResult, "Expected="+expectedResult + ", Actual="+actualResult);
+	}
+
+	/**
+	 * Test if username or password is empty when regsiter
+	 * @throws IOException
+	 * @throws InterruptedException
+	 */
+	@Test
+	@Order(3)
+	public void failedRegisterUser_empty() throws IOException, InterruptedException
+	{
+		String json = "{\"username\":\"\",\"password\": \"\"}";
+        HttpRequest postMessageRequest = HttpRequest.newBuilder()
+                .uri(URI.create("http://localhost:8080/api/user/register"))
+				.header("Content-Type", "application/json; charset=UTF-8")
+                .POST(HttpRequest.BodyPublishers.ofString(json))
+                .build();
+		
+		HttpResponse<String> response = webClient.send(postMessageRequest, HttpResponse.BodyHandlers.ofString());
+        int status = response.statusCode();
+        Assertions.assertEquals(200, status, "Expected Status Code 200 - Actual Code was: " + status);
+
+		String expectedResult = "error";
+
+        ObjectMapper om = new ObjectMapper();
+        Map<String, Object> data = om.readValue(response.body().toString(), new TypeReference<Map<String, Object>>() {});
+		String actualResult = data.keySet().iterator().next();
+		
+        Assertions.assertEquals(expectedResult, actualResult, "Expected="+expectedResult + ", Actual="+actualResult);
+	}
+
+	/**
 	 * Test user login
 	 * @throws IOException
 	 * @throws InterruptedException
 	 */
 	@Test
-	@Order(2)
+	@Order(4)
 	public void loginUser() throws IOException, InterruptedException
 	{
 		String json = "{\"username\":\"test\",\"password\": \"test\"}";
@@ -112,12 +199,99 @@ class UserTests {
 	}
 
 	/**
+	 * Test login empty username or password
+	 * @throws IOException
+	 * @throws InterruptedException
+	 */
+	@Test
+	@Order(5)
+	public void failedLoginUser_param() throws IOException, InterruptedException
+	{
+		String json = "{\"username\":\"\",\"password\": \"\"}";
+        HttpRequest postMessageRequest = HttpRequest.newBuilder()
+                .uri(URI.create("http://localhost:8080/api/user/login"))
+				.header("Content-Type", "application/json; charset=UTF-8")
+                .POST(HttpRequest.BodyPublishers.ofString(json))
+                .build();
+		
+		HttpResponse<String> response = webClient.send(postMessageRequest, HttpResponse.BodyHandlers.ofString());
+        int status = response.statusCode();
+        Assertions.assertEquals(200, status, "Expected Status Code 200 - Actual Code was: " + status);
+
+		String expectedResult = "error";
+
+        ObjectMapper om = new ObjectMapper();
+        Map<String, Object> data = om.readValue(response.body().toString(), new TypeReference<Map<String, Object>>() {});
+		String actualResult = data.keySet().iterator().next();
+
+        Assertions.assertEquals(expectedResult, actualResult, "Expected="+expectedResult + ", Actual="+actualResult);
+	}
+
+	/**
+	 * Test login empty username or password
+	 * @throws IOException
+	 * @throws InterruptedException
+	 */
+	@Test
+	@Order(5)
+	public void failedLoginUser_empty() throws IOException, InterruptedException
+	{
+		String json = "{}";
+        HttpRequest postMessageRequest = HttpRequest.newBuilder()
+                .uri(URI.create("http://localhost:8080/api/user/login"))
+				.header("Content-Type", "application/json; charset=UTF-8")
+                .POST(HttpRequest.BodyPublishers.ofString(json))
+                .build();
+		
+		HttpResponse<String> response = webClient.send(postMessageRequest, HttpResponse.BodyHandlers.ofString());
+        int status = response.statusCode();
+        Assertions.assertEquals(200, status, "Expected Status Code 200 - Actual Code was: " + status);
+
+		String expectedResult = "error";
+
+        ObjectMapper om = new ObjectMapper();
+        Map<String, Object> data = om.readValue(response.body().toString(), new TypeReference<Map<String, Object>>() {});
+		String actualResult = data.keySet().iterator().next();
+
+        Assertions.assertEquals(expectedResult, actualResult, "Expected="+expectedResult + ", Actual="+actualResult);
+	}
+
+	/**
+	 * Test login username invalid
+	 * @throws IOException
+	 * @throws InterruptedException
+	 */
+	@Test
+	@Order(6)
+	public void failedLoginUser_invalid() throws IOException, InterruptedException
+	{
+		String json = "{\"username\":\"testtttttttttttt\",\"password\": \"test\"}";
+        HttpRequest postMessageRequest = HttpRequest.newBuilder()
+                .uri(URI.create("http://localhost:8080/api/user/login"))
+				.header("Content-Type", "application/json; charset=UTF-8")
+                .POST(HttpRequest.BodyPublishers.ofString(json))
+                .build();
+		
+		HttpResponse<String> response = webClient.send(postMessageRequest, HttpResponse.BodyHandlers.ofString());
+        int status = response.statusCode();
+        Assertions.assertEquals(200, status, "Expected Status Code 200 - Actual Code was: " + status);
+
+		String expectedResult = "error";
+
+        ObjectMapper om = new ObjectMapper();
+        Map<String, Object> data = om.readValue(response.body().toString(), new TypeReference<Map<String, Object>>() {});
+		String actualResult = data.keySet().iterator().next();
+
+        Assertions.assertEquals(expectedResult, actualResult, "Expected="+expectedResult + ", Actual="+actualResult);
+	}
+
+	/**
 	 * Test update user account information
 	 * @throws IOException
 	 * @throws InterruptedException
 	 */
 	@Test
-	@Order(3)
+	@Order(7)
 	public void updateUserAccountInformation() throws IOException, InterruptedException
 	{
 		String json = "{\"username\":\"test\", \"email\": \"\", \"firstname\":\"testfirstname\", \"lastname\": \"\", \"address\": \"\"}";
@@ -142,12 +316,41 @@ class UserTests {
 	}
 
 	/**
+	 * Test update user account information invalid user
+	 * @throws IOException
+	 * @throws InterruptedException
+	 */
+	@Test
+	@Order(8)
+	public void updateUserAccountInformation_invalid() throws IOException, InterruptedException
+	{
+		String json = "{\"username\":\"testtttttttttttt\"}";
+        HttpRequest postMessageRequest = HttpRequest.newBuilder()
+                .uri(URI.create("http://localhost:8080/api/user/account"))
+				.header("Content-Type", "application/json; charset=UTF-8")
+                .method("PATCH", HttpRequest.BodyPublishers.ofString(json))
+                .build();
+		
+		HttpResponse<String> response = webClient.send(postMessageRequest, HttpResponse.BodyHandlers.ofString());
+        int status = response.statusCode();
+        Assertions.assertEquals(200, status, "Expected Status Code 200 - Actual Code was: " + status);
+
+		String expectedResult = "error";
+
+        ObjectMapper om = new ObjectMapper();
+        Map<String, Object> data = om.readValue(response.body().toString(), new TypeReference<Map<String, Object>>() {});
+		String actualResult = data.keySet().iterator().next();
+
+        Assertions.assertEquals(expectedResult, actualResult, "Expected="+expectedResult + ", Actual="+actualResult);
+	}
+
+	/**
 	 * Test get user account information
 	 * @throws IOException
 	 * @throws InterruptedException
 	 */
 	@Test
-	@Order(4)
+	@Order(9)
 	public void getUserAccountInformation() throws IOException, InterruptedException
 	{
 		String json = "{\"username\":\"test\"}";
@@ -171,12 +374,41 @@ class UserTests {
 	}
 
 	/**
+	 * Test get user account information invalid user
+	 * @throws IOException
+	 * @throws InterruptedException
+	 */
+	@Test
+	@Order(10)
+	public void getUserAccountInformation_invalid() throws IOException, InterruptedException
+	{
+		String json = "{\"username\":\"testtttttttttttt\"}";
+        HttpRequest postMessageRequest = HttpRequest.newBuilder()
+                .uri(URI.create("http://localhost:8080/api/user/account"))
+				.header("Content-Type", "application/json; charset=UTF-8")
+                .POST(HttpRequest.BodyPublishers.ofString(json))
+                .build();
+		
+		HttpResponse<String> response = webClient.send(postMessageRequest, HttpResponse.BodyHandlers.ofString());
+        int status = response.statusCode();
+        Assertions.assertEquals(200, status, "Expected Status Code 200 - Actual Code was: " + status);
+
+		String expectedResult = "error";
+
+        ObjectMapper om = new ObjectMapper();
+        Map<String, Object> data = om.readValue(response.body().toString(), new TypeReference<Map<String, Object>>() {});
+		String actualResult = data.keySet().iterator().next();
+
+        Assertions.assertEquals(expectedResult, actualResult, "Expected="+expectedResult + ", Actual="+actualResult);
+	}
+
+	/**
 	 * Test update user password
 	 * @throws IOException
 	 * @throws InterruptedException
 	 */
 	@Test
-	@Order(5)
+	@Order(11)
 	public void updateUserPassword() throws IOException, InterruptedException
 	{
 		String json = "{\"username\":\"test\", \"current\":\"test\", \"new\":\"testpassword\"}";
@@ -201,12 +433,128 @@ class UserTests {
 	}
 
 	/**
+	 * Test update user password invalid user
+	 * @throws IOException
+	 * @throws InterruptedException
+	 */
+	@Test
+	@Order(12)
+	public void updateUserPassword_invalid() throws IOException, InterruptedException
+	{
+		String json = "{\"username\":\"testtttttttttttt\"}";
+        HttpRequest postMessageRequest = HttpRequest.newBuilder()
+				.uri(URI.create("http://localhost:8080/api/user/password"))
+				.header("Content-Type", "application/json; charset=UTF-8")
+				.method("PATCH", HttpRequest.BodyPublishers.ofString(json))
+                .build();
+		
+		HttpResponse<String> response = webClient.send(postMessageRequest, HttpResponse.BodyHandlers.ofString());
+        int status = response.statusCode();
+        Assertions.assertEquals(200, status, "Expected Status Code 200 - Actual Code was: " + status);
+
+		String expectedResult = "error";
+
+        ObjectMapper om = new ObjectMapper();
+        Map<String, Object> data = om.readValue(response.body().toString(), new TypeReference<Map<String, Object>>() {});
+		String actualResult = data.keySet().iterator().next();
+
+        Assertions.assertEquals(expectedResult, actualResult, "Expected="+expectedResult + ", Actual="+actualResult);
+	}
+
+	/**
+	 * Test update user password with not matching password
+	 * @throws IOException
+	 * @throws InterruptedException
+	 */
+	@Test
+	@Order(13)
+	public void updateUserPassword_password() throws IOException, InterruptedException
+	{
+		String json = "{\"username\":\"test\", \"current\":\"testtttt\", \"new\":\"aaaaaaaa\"}";
+        HttpRequest postMessageRequest = HttpRequest.newBuilder()
+				.uri(URI.create("http://localhost:8080/api/user/password"))
+				.header("Content-Type", "application/json; charset=UTF-8")
+				.method("PATCH", HttpRequest.BodyPublishers.ofString(json))
+                .build();
+		
+		HttpResponse<String> response = webClient.send(postMessageRequest, HttpResponse.BodyHandlers.ofString());
+        int status = response.statusCode();
+        Assertions.assertEquals(200, status, "Expected Status Code 200 - Actual Code was: " + status);
+
+		String expectedResult = "error";
+
+        ObjectMapper om = new ObjectMapper();
+        Map<String, Object> data = om.readValue(response.body().toString(), new TypeReference<Map<String, Object>>() {});
+		String actualResult = data.keySet().iterator().next();
+
+        Assertions.assertEquals(expectedResult, actualResult, "Expected="+expectedResult + ", Actual="+actualResult);
+	}
+
+	/**
+	 * Test update user password with empty current and new password
+	 * @throws IOException
+	 * @throws InterruptedException
+	 */
+	@Test
+	@Order(14)
+	public void updateUserPassword_missing() throws IOException, InterruptedException
+	{
+		String json = "{\"username\":\"test\", \"current\":\"\", \"new\":\"\"}";
+        HttpRequest postMessageRequest = HttpRequest.newBuilder()
+				.uri(URI.create("http://localhost:8080/api/user/password"))
+				.header("Content-Type", "application/json; charset=UTF-8")
+				.method("PATCH", HttpRequest.BodyPublishers.ofString(json))
+                .build();
+		
+		HttpResponse<String> response = webClient.send(postMessageRequest, HttpResponse.BodyHandlers.ofString());
+        int status = response.statusCode();
+        Assertions.assertEquals(200, status, "Expected Status Code 200 - Actual Code was: " + status);
+
+		String expectedResult = "error";
+
+        ObjectMapper om = new ObjectMapper();
+        Map<String, Object> data = om.readValue(response.body().toString(), new TypeReference<Map<String, Object>>() {});
+		String actualResult = data.keySet().iterator().next();
+
+        Assertions.assertEquals(expectedResult, actualResult, "Expected="+expectedResult + ", Actual="+actualResult);
+	}
+
+	/**
+     * Test to see if able to get all reimbursement types
+     * @throws IOException
+     * @throws InterruptedException
+     */
+    @Test
+    @Order(17)
+    public void getAllUserList() throws IOException, InterruptedException
+	{
+        HttpRequest postMessageRequest = HttpRequest.newBuilder()
+                .uri(URI.create("http://localhost:8080/api/user/list"))
+				.GET()
+                .build();
+		
+		HttpResponse<String> response = webClient.send(postMessageRequest, HttpResponse.BodyHandlers.ofString());
+        int status = response.statusCode();
+        Assertions.assertEquals(200, status, "Expected Status Code 200 - Actual Code was: " + status);
+
+		String expectedResult = "users";
+
+        ObjectMapper om = new ObjectMapper();
+        Map<String, Object> data = om.readValue(response.body().toString(), new TypeReference<Map<String, Object>>() {});
+		
+        //Get only the first key
+        String actualResult = data.keySet().iterator().next();
+       
+		Assertions.assertEquals(expectedResult, actualResult, "Expected="+expectedResult + ", Actual="+actualResult);
+    }
+
+	/**
 	 * Test update user role
 	 * @throws IOException
 	 * @throws InterruptedException
 	 */
 	@Test
-	@Order(6)
+	@Order(15)
 	public void updateUserRole() throws IOException, InterruptedException
 	{
 		//Login to grab the userID
@@ -249,9 +597,38 @@ class UserTests {
 	}
 
 	/**
+	 * Test update user role with invalid user
+	 * @throws IOException
+	 * @throws InterruptedException
+	 */
+	@Test
+	@Order(16)
+	public void updateUserRole_invalid() throws IOException, InterruptedException
+	{
+		String json = "{\"id\": 9999999, \"role\": 1}";
+        HttpRequest postMessageRequest = HttpRequest.newBuilder()
+				.uri(URI.create("http://localhost:8080/api/user/role"))
+				.header("Content-Type", "application/json; charset=UTF-8")
+				.method("PATCH", HttpRequest.BodyPublishers.ofString(json))
+                .build();
+		
+		HttpResponse<String> response = webClient.send(postMessageRequest, HttpResponse.BodyHandlers.ofString());
+        int status = response.statusCode();
+        Assertions.assertEquals(200, status, "Expected Status Code 200 - Actual Code was: " + status);
+
+		String expectedResult = "error";
+
+        ObjectMapper om = new ObjectMapper();
+        Map<String, Object> data = om.readValue(response.body().toString(), new TypeReference<Map<String, Object>>() {});
+		String actualResult = data.keySet().iterator().next();
+
+        Assertions.assertEquals(expectedResult, actualResult, "Expected="+expectedResult + ", Actual="+actualResult);
+	}
+
+	/**
 	 * For cleaning the test user
 	 */
-	@Order(12)
+	@Order(29)
 	@Test
 	public void removeUser()
 	{

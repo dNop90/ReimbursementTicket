@@ -97,43 +97,4 @@ public class User {
     public void setAddress(String address) {
         this.address = address;
     }
-
-    @Override
-    public boolean equals(Object o)
-    {
-        if(this == o) return true;
-        if(o == null) return false;
-        if(getClass() != o.getClass()) return false;
-
-        User other = (User)o;
-
-        if(userID == null && other.userID != null)
-        {
-            return false;
-        }
-        else if(!userID.equals(other.userID))
-        {
-            return false;
-        }
-
-        if(username == null && other.username != null)
-        {
-            return false;
-        }
-        else if(!username.equals(other.username))
-        {
-            return false;
-        }
-
-        if(password == null && other.password != null)
-        {
-            return false;
-        }
-        else if(!password.equals(other.password))
-        {
-            return false;
-        }
-
-        return true;
-    }
 }
