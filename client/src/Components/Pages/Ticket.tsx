@@ -88,8 +88,6 @@ function Ticket() {
       let active_tickets = [];
       let archived_tickets = [];
 
-      console.log(data);
-
       for(const ticket of data.tickets)
       {
         ticket.typeID = reimbursementType[ticket.typeID];
@@ -146,7 +144,7 @@ function Ticket() {
           <tbody>
               {
                   state.active?.map((ticket: any, index: number) => (
-                      <tr>
+                      <tr key={ticket.ticketID}>
                           <td>{ticket.ticketID}</td>
                           <td>{ticket.status}</td>
                           <td>{ticket.description || ""}</td>
@@ -178,7 +176,7 @@ function Ticket() {
           <tbody>
               {
                   state.archived?.map((ticket: any, index: number) => (
-                      <tr>
+                      <tr key={ticket.ticketID}>
                           <td>{ticket.ticketID}</td>
                           <td>{ticket.status}</td>
                           <td>{ticket.description || ""}</td>

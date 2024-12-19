@@ -148,7 +148,7 @@ function NewTicket() {
             <select name="reimbursement_type">
                 {
                     state.reimbursement_types.types?.map((reimbtype: any, index: number) => (
-                        (<option value={reimbtype.typeID}>{reimbtype.typename}</option>)
+                        (<option value={reimbtype.typeID} key={reimbtype.typeID}>{reimbtype.typename}</option>)
                     ))
                 }
             </select>

@@ -112,7 +112,7 @@ function UserList() {
             <tbody>
                 {
                     state.data.users.map((user: any, index: number) => (
-                        <tr>
+                        <tr key={user.userID}>
                             <td>{user.userID}</td>
                             <td>{user.username}</td>
                             <td>{user.email || ""}</td>

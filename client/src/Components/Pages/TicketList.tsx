@@ -190,7 +190,7 @@ function TicketList() {
             <tbody>
                 {
                     state.active.map((ticket: any, index: number) => (
-                        <tr>
+                        <tr key={ticket.ticketID}>
                             <td>{ticket.ticketID}</td>
                             <td>
                                 <select data-ticket-id={ticket.ticketID} onChange={onTicketStatusChange}>
@@ -231,7 +231,7 @@ function TicketList() {
             <tbody>
                 {
                     state.archived.map((ticket: any, index: number) => (
-                        <tr>
+                        <tr key={ticket.ticketID}>
                             <td>{ticket.ticketID}</td>
                             <td>{ticket.statusname}</td>
                             <td>{ticket.description || ""}</td>
