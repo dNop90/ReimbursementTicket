@@ -47,7 +47,7 @@ public class TicketTests {
      * @throws IOException
      * @throws InterruptedException
      */
-    @Order(18)
+    @Order(21)
     @Test
     public void addNewTicket() throws IOException, InterruptedException
 	{
@@ -78,7 +78,7 @@ public class TicketTests {
      * @throws InterruptedException
      */
     @Test
-	@Order(19)
+	@Order(22)
 	public void addNewTicket_param() throws IOException, InterruptedException
 	{
 		String json = "{\"amount\": 123, \"typeid\": 1, \"submitterid\": 1}";
@@ -107,7 +107,7 @@ public class TicketTests {
      * @throws InterruptedException
      */
     @Test
-	@Order(20)
+	@Order(23)
 	public void addNewTicket_amount() throws IOException, InterruptedException
 	{
 		String json = "{\"description\":\"testdesc\", \"amount\": 0, \"typeid\": 1, \"submitterid\": 1}";
@@ -136,7 +136,7 @@ public class TicketTests {
      * @throws InterruptedException
      */
     @Test
-	@Order(21)
+	@Order(24)
 	public void addNewTicket_type() throws IOException, InterruptedException
 	{
 		String json = "{\"description\":\"testdesc\", \"amount\": 123, \"typeid\": 9999, \"submitterid\": 1}";
@@ -164,7 +164,7 @@ public class TicketTests {
      * @throws IOException
      * @throws InterruptedException
      */
-    @Order(22)
+    @Order(25)
     @Test
     public void getUserTickets() throws IOException, InterruptedException
     {
@@ -195,7 +195,7 @@ public class TicketTests {
      * @throws InterruptedException
      */
     @Test
-	@Order(23)
+	@Order(26)
 	public void getUserTickets_param() throws IOException, InterruptedException
 	{
 		String json = "{}";
@@ -223,7 +223,7 @@ public class TicketTests {
      * @throws IOException
      * @throws InterruptedException
      */
-    @Order(24)
+    @Order(27)
     @Test
     public void getAllTickets() throws IOException, InterruptedException
     {
@@ -252,7 +252,7 @@ public class TicketTests {
      * @throws IOException
      * @throws InterruptedException
      */
-    @Order(25)
+    @Order(28)
     @Test
     public void updateTicketStatus() throws IOException, InterruptedException
     {
@@ -282,7 +282,7 @@ public class TicketTests {
      * @throws IOException
      * @throws InterruptedException
      */
-    @Order(26)
+    @Order(29)
     @Test
     public void updateTicketStatus_param() throws IOException, InterruptedException
     {
@@ -311,7 +311,7 @@ public class TicketTests {
      * @throws IOException
      * @throws InterruptedException
      */
-    @Order(27)
+    @Order(30)
     @Test
     public void updateTicketStatus_ticket() throws IOException, InterruptedException
     {
@@ -340,7 +340,7 @@ public class TicketTests {
      * @throws IOException
      * @throws InterruptedException
      */
-    @Order(28)
+    @Order(31)
     @Test
     public void updateTicketStatus_user() throws IOException, InterruptedException
     {

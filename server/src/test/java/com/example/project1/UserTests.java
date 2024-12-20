@@ -144,7 +144,7 @@ class UserTests {
 	 * @throws InterruptedException
 	 */
 	@Test
-	@Order(3)
+	@Order(4)
 	public void failedRegisterUser_empty() throws IOException, InterruptedException
 	{
 		String json = "{\"username\":\"\",\"password\": \"\"}";
@@ -173,7 +173,7 @@ class UserTests {
 	 * @throws InterruptedException
 	 */
 	@Test
-	@Order(4)
+	@Order(5)
 	public void loginUser() throws IOException, InterruptedException
 	{
 		String json = "{\"username\":\"test\",\"password\": \"test\"}";
@@ -204,7 +204,7 @@ class UserTests {
 	 * @throws InterruptedException
 	 */
 	@Test
-	@Order(5)
+	@Order(6)
 	public void failedLoginUser_param() throws IOException, InterruptedException
 	{
 		String json = "{\"username\":\"\",\"password\": \"\"}";
@@ -233,7 +233,7 @@ class UserTests {
 	 * @throws InterruptedException
 	 */
 	@Test
-	@Order(5)
+	@Order(7)
 	public void failedLoginUser_empty() throws IOException, InterruptedException
 	{
 		String json = "{}";
@@ -262,7 +262,7 @@ class UserTests {
 	 * @throws InterruptedException
 	 */
 	@Test
-	@Order(6)
+	@Order(8)
 	public void failedLoginUser_invalid() throws IOException, InterruptedException
 	{
 		String json = "{\"username\":\"testtttttttttttt\",\"password\": \"test\"}";
@@ -291,7 +291,7 @@ class UserTests {
 	 * @throws InterruptedException
 	 */
 	@Test
-	@Order(7)
+	@Order(9)
 	public void updateUserAccountInformation() throws IOException, InterruptedException
 	{
 		String json = "{\"username\":\"test\", \"email\": \"\", \"firstname\":\"testfirstname\", \"lastname\": \"\", \"address\": \"\"}";
@@ -321,7 +321,7 @@ class UserTests {
 	 * @throws InterruptedException
 	 */
 	@Test
-	@Order(8)
+	@Order(10)
 	public void updateUserAccountInformation_invalid() throws IOException, InterruptedException
 	{
 		String json = "{\"username\":\"testtttttttttttt\"}";
@@ -350,7 +350,7 @@ class UserTests {
 	 * @throws InterruptedException
 	 */
 	@Test
-	@Order(9)
+	@Order(11)
 	public void getUserAccountInformation() throws IOException, InterruptedException
 	{
 		String json = "{\"username\":\"test\"}";
@@ -379,7 +379,7 @@ class UserTests {
 	 * @throws InterruptedException
 	 */
 	@Test
-	@Order(10)
+	@Order(12)
 	public void getUserAccountInformation_invalid() throws IOException, InterruptedException
 	{
 		String json = "{\"username\":\"testtttttttttttt\"}";
@@ -408,7 +408,7 @@ class UserTests {
 	 * @throws InterruptedException
 	 */
 	@Test
-	@Order(11)
+	@Order(13)
 	public void updateUserPassword() throws IOException, InterruptedException
 	{
 		String json = "{\"username\":\"test\", \"current\":\"test\", \"new\":\"testpassword\"}";
@@ -438,7 +438,7 @@ class UserTests {
 	 * @throws InterruptedException
 	 */
 	@Test
-	@Order(12)
+	@Order(14)
 	public void updateUserPassword_invalid() throws IOException, InterruptedException
 	{
 		String json = "{\"username\":\"testtttttttttttt\"}";
@@ -467,7 +467,7 @@ class UserTests {
 	 * @throws InterruptedException
 	 */
 	@Test
-	@Order(13)
+	@Order(15)
 	public void updateUserPassword_password() throws IOException, InterruptedException
 	{
 		String json = "{\"username\":\"test\", \"current\":\"testtttt\", \"new\":\"aaaaaaaa\"}";
@@ -496,7 +496,7 @@ class UserTests {
 	 * @throws InterruptedException
 	 */
 	@Test
-	@Order(14)
+	@Order(16)
 	public void updateUserPassword_missing() throws IOException, InterruptedException
 	{
 		String json = "{\"username\":\"test\", \"current\":\"\", \"new\":\"\"}";
@@ -554,7 +554,7 @@ class UserTests {
 	 * @throws InterruptedException
 	 */
 	@Test
-	@Order(15)
+	@Order(18)
 	public void updateUserRole() throws IOException, InterruptedException
 	{
 		//Login to grab the userID
@@ -602,7 +602,7 @@ class UserTests {
 	 * @throws InterruptedException
 	 */
 	@Test
-	@Order(16)
+	@Order(19)
 	public void updateUserRole_invalid() throws IOException, InterruptedException
 	{
 		String json = "{\"id\": 9999999, \"role\": 1}";
@@ -628,7 +628,7 @@ class UserTests {
 	/**
 	 * For cleaning the test user
 	 */
-	@Order(29)
+	@Order(32)
 	@Test
 	public void removeUser()
 	{
